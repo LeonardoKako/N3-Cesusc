@@ -43,7 +43,6 @@ exports.criar = async (req, res) => {
       descricao,
       preco,
       quantidade_estoque,
-      data_validade,
       categoria_id,
       fornecedor_id,
     } = req.body;
@@ -64,7 +63,6 @@ exports.criar = async (req, res) => {
     request.input("descricao", sql.Text, descricao);
     request.input("preco", sql.Decimal(10, 2), preco);
     request.input("quantidade_estoque", sql.Int, quantidade_estoque);
-    request.input("data_validade", sql.Date, data_validade);
     request.input("categoria_id", sql.Int, categoria_id);
     request.input("fornecedor_id", sql.Int, fornecedor_id);
 

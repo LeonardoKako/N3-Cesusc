@@ -1,8 +1,14 @@
+import { Cards } from "./components/Cards";
+import { Header } from "./components/Header";
+import { NewItem } from "./components/NewItem";
+
 function App() {
   return (
-    <>
-      <h2 className='text-2xl text-amber-300'>Olá reseba</h2>
-    </>
+    <div className='bg-slate-100 relative min-h-screen w-full'>
+      <Header />
+      <Cards />
+      <NewItem />
+    </div>
   );
 }
 
