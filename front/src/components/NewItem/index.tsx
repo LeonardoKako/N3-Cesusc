@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { PlusIcon, XIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { FormNewItem } from "../FormNewItem";
+import { Form } from "../Form";
 
 export function NewItem() {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,7 +54,7 @@ export function NewItem() {
                 </div>
                 <div className='w-full h-0.5 bg-black mt-1.5'></div>
               </header>
-              <FormNewItem handleToggle={handleToggle} />
+              <Form handleToggle={handleToggle} />
               <button
                 type='button'
                 className={clsx(

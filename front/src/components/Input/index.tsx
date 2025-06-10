@@ -5,9 +5,18 @@ type InputProps = {
   type: "number" | "text";
   id: string;
   placeholder?: string;
+  value: string | number;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export function Input({ title, type, id, placeholder }: InputProps) {
+export function Input({
+  title,
+  type,
+  id,
+  placeholder,
+  value,
+  onChange,
+}: InputProps) {
   return (
     <div className='flex items-center gap-6 justify-between'>
       <label
@@ -26,6 +35,8 @@ export function Input({ title, type, id, placeholder }: InputProps) {
         type={type}
         id={id}
         placeholder={placeholder}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );
