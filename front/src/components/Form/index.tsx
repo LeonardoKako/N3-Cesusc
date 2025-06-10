@@ -37,7 +37,8 @@ export function Form({ handleToggle, item }: FormProps) {
     e.preventDefault();
     handleToggle();
     toast.dismiss();
-    toast.success("Item criado");
+    if (!item) toast.success("Item criado");
+    if (item) toast.success("Item atualizado");
 
     // Aqui você pode usar os valores dos estados, incluindo:
     // categoriaId e fornecedorId que agora são numéricos
