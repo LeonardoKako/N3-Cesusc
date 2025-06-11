@@ -25,7 +25,7 @@ export function Card(item: Item) {
         <div className='w-60 h-60 bg-white shadow-2xl rounded-2xl hover:scale-105 transition p-5 flex flex-col justify-between'>
           <div className='flex flex-col gap-1'>
             <h1 className='font-semibold text-lg'>{item.nome}</h1>
-            <div className='px-2 py-1 bg-slate-200 rounded-2xl flex items-center text-sm w-full max-w-30'>
+            <div className='px-2 py-1 bg-slate-200 rounded-md flex items-center text-sm w-full max-w-30'>
               {item.categoria_id}
             </div>
             <p className='text-slate-600 text-sm'>{item.descricao}</p>
