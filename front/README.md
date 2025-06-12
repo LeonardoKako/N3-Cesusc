@@ -49,7 +49,7 @@ Certifique-se de ter o seguinte instalado:
 
 1.  Configure o seu servidor/banco de dados SQL de preferência.
 2.  Crie um novo usuário para o banco de dados (se sua configuração exigir).
-3.  Execute os scripts SQL localizados na pasta `db` para configurar o esquema do seu banco de dados e os dados iniciais. Geralmente, você pode fazer isso usando uma ferramenta de gerenciamento de banco de dados ou a interface de linha de comando.
+3.  Execute os scripts SQL localizados na pasta `sql` para configurar o esquema do seu banco de dados e os dados iniciais. Geralmente, você pode fazer isso usando uma ferramenta de gerenciamento de banco de dados ou a interface de linha de comando.
 
 ---
 
