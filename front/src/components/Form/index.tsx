@@ -3,16 +3,21 @@ import { toast } from "react-toastify";
 import { Input } from "../Input";
 import { useState, type FormEvent } from "react";
 import type { Item } from "../../interfaces/item";
+import axios from "axios";
 
 type FormProps = {
   handleToggle: () => void;
   item?: Item;
+  onRefresh: () => void;
 };
 
 const categorias = [
-  { id: 1, nome: "Geladeira" },
-  { id: 2, nome: "Horti Fruti" },
-  { id: 3, nome: "Mercearia" },
+  { id: 1, nome: "Geladeira 🧊" },
+  { id: 2, nome: "Mercearia 🛒" },
+  { id: 3, nome: "Hortifruti 🥦" },
+  { id: 4, nome: "Açougue 🥩" },
+  { id: 5, nome: "Padaria 🥖" },
+  { id: 6, nome: "Bebidas 🍷" },
 ];
 
 const fornecedores = [
@@ -21,11 +26,11 @@ const fornecedores = [
   { id: 3, nome: "Fornecedor C" },
 ];
 
-export function Form({ handleToggle, item }: FormProps) {
+export function Form({ handleToggle, item, onRefresh }: FormProps) {
   const [nome, setNome] = useState(item?.nome || "");
   const [descricao, setDescricao] = useState(item?.descricao || "");
   const [preco, setPreco] = useState(item?.preco || 0);
-  const [qtdeEstoque, setQtdeEstoque] = useState(item?.quantidade_estoque || 0);
+  const [qtdeEstoque, setQtdeEstoque] = useState(item?.estoque || 0);
   const [categoriaId, setCategoriaId] = useState(
     item?.categoria_id || categorias[0]?.id || 0
   );
@@ -33,27 +38,44 @@ export function Form({ handleToggle, item }: FormProps) {
     item?.fornecedor_id || fornecedores[0]?.id || 0
   );
 
-  function handleSubmitNewItem(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    handleToggle();
     toast.dismiss();
-    if (!item) toast.success("Item criado");
-    if (item) toast.success("Item atualizado");
 
-    // Aqui você pode usar os valores dos estados, incluindo:
-    // categoriaId e fornecedorId que agora são numéricos
-    console.log({
+    if (nome === "")
+      return toast.error("Por favor, informe o nome do produto.");
+    if (descricao === "")
+      return toast.error("Por favor, informe a descrição do produto.");
+    if (preco <= 0) return toast.error("O preço deve ser maior que zero.");
+    if (qtdeEstoque < 0)
+      return toast.error("A quantidade em estoque não pode ser negativa.");
+
+    const payload = {
       nome,
       descricao,
       preco,
-      qtdeEstoque,
-      categoriaId,
-      fornecedorId,
-    });
-  }
+      estoque: qtdeEstoque,
+      categoria_id: categoriaId,
+      fornecedor_id: fornecedorId,
+    };
 
+    if (!item) {
+      // Criar novo produto
+      await axios.post("http://localhost:3000/api/produtos", payload);
+      toast.success("Item criado com sucesso!");
+      handleToggle();
+      onRefresh();
+    }
+    if (item) {
+      // Atualizar produto existente
+      await axios.put(`http://localhost:3000/api/produtos/${item.id}`, payload);
+      toast.success("Item atualizado com sucesso!");
+      handleToggle();
+      onRefresh();
+    }
+  }
   return (
-    <form onSubmit={handleSubmitNewItem} className='flex flex-col gap-3.5'>
+    <form onSubmit={handleSubmit} className='flex flex-col gap-3.5'>
       <Input
         id='name'
         title='Nome'

@@ -1,13 +1,12 @@
+import logo from "../../assets/images/logo.png";
+
 export function Header() {
   return (
     <>
-      <header className='flex items-center gap-6 justify-around px-20 py-6 '>
-        <div>Logo</div>
-        <h1>Mercado N3</h1>
+      <header className='flex flex-col items-start gap-6 justify-between px-20 py-6 '>
+        <img src={logo} className='w-full max-w-50' alt='Logo supermercado' />
+        <div className='w-full h-0.5 bg-blue-950'></div>
       </header>
-      <div className='flex justify-center w-full'>
-        <div className='w-[90%] h-0.5 bg-black mt-1.5'></div>
-      </div>
     </>
   );
 }

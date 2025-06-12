@@ -6,7 +6,7 @@ export const itemExample: Item = {
   nome: "Banana prata",
   descricao: "Banana prata em boa condição",
   preco: 10,
-  quantidade_estoque: 55,
+  estoque: 55,
   categoria_id: 2,
   fornecedor_id: 1,
 };

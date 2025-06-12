@@ -1,8 +1,9 @@
 export type Item = {
+  id: number;
   nome: string;
   descricao: string;
   preco: number;
-  quantidade_estoque: number;
+  estoque: number;
   categoria_id: number;
   fornecedor_id: number;
 };
