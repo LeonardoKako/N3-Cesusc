@@ -30,7 +30,7 @@ export function Input({
           " w-full px-2 py-1 text-base text-gray-700 placeholder-gray-400",
           "bg-white border border-gray-300 rounded-lg shadow-sm",
           "focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent",
-          type === "number" ? "max-w-[50px]" : "max-w-[400px]"
+          type === "number" ? "max-w-16" : "max-w-[400px]"
         )}
         type={type}
         id={id}
