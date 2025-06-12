@@ -46,7 +46,7 @@ export function Card({ onRefresh, item }: CardProps) {
   return (
     <>
       {!isOpen && (
-        <div className='w-60 min-h-60 bg-white shadow-2xl rounded-2xl hover:scale-105 transition p-5 flex flex-col justify-between'>
+        <div className='w-[80%] md:w-60 min-h-60 bg-white shadow-2xl rounded-2xl hover:scale-105 transition p-5 flex flex-col justify-between mb-6'>
           <div className='flex flex-col gap-1'>
             <h1 className='font-semibold text-lg'>{item.nome}</h1>
 

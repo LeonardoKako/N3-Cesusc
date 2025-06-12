@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Card } from "../Card";
 import type { Item } from "../../interfaces/item";
+import clsx from "clsx";
 
 export function Cards() {
   const [produtos, setProdutos] = useState<Item[]>([]);
@@ -32,7 +33,12 @@ export function Cards() {
   }
 
   return (
-    <section className='px-40 py-10 flex flex-wrap gap-16 justify-between'>
+    <section
+      className={clsx(
+        "px-20 py-10 flex flex-wrap justify-center",
+        "gap-6 md:px-30 lg:px-40"
+      )}
+    >
       {produtos.map((i) => (
         <Card
           key={i.id}
