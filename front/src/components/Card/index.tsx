@@ -29,7 +29,6 @@ export function Card({ onRefresh, item }: CardProps) {
 
   async function handleDelete() {
     toast.dismiss();
-
     try {
       await axios.delete(`http://localhost:3000/api/produtos/${item.id}`);
       toast.success("Item deletado com sucesso!");
@@ -51,7 +50,7 @@ export function Card({ onRefresh, item }: CardProps) {
             <h1 className='font-semibold text-lg'>{item.nome}</h1>
 
             <div
-              className={`px-2 py-1 ${categoria?.cor} rounded-md items-center flex text-sm w-full max-w-30 justify-between`}
+              className={`px-2 py-1 ${categoria?.cor} rounded-md flex justify-between text-sm w-full max-w-30`}
             >
               <p>{categoria?.nome}</p>
               <span>{categoria?.emoji}</span>
@@ -81,46 +80,43 @@ export function Card({ onRefresh, item }: CardProps) {
       )}
 
       {isOpen && (
-        <>
-          {/* Overlay */}
+        <div
+          className='fixed inset-0 bg-black/50 flex items-center justify-center z-10'
+          onClick={handleToggle}
+        >
           <div
-            className='fixed inset-0 bg-black/50 flex items-center justify-center z-10'
-            onClick={handleToggle}
+            className='bg-white w-[560px] h-[480px] rounded-lg shadow-xl z-20 p-5 flex flex-col justify-between'
+            onClick={(e) => e.stopPropagation()}
           >
-            <div
-              className='bg-white w-[560px] h-[480px] rounded-lg shadow-xl z-20 p-5 flex flex-col justify-between'
-              onClick={(e) => e.stopPropagation()}
+            <header className='flex flex-col'>
+              <div className='flex justify-between'>
+                <h1 className='font-semibold text-lg'>Edição de item</h1>
+                <span className='cursor-pointer' onClick={handleToggle}>
+                  <XIcon />
+                </span>
+              </div>
+              <div className='w-full h-0.5 bg-black mt-1.5'></div>
+            </header>
+
+            <Form
+              item={item}
+              handleToggle={handleToggle}
+              onRefresh={onRefresh}
+            />
+
+            <button
+              type='button'
+              className={clsx(
+                "px-4 py-2 bg-red-400 mt-3 rounded-2xl w-full",
+                "cursor-pointer transition hover:bg-red-500",
+                "text-white font-bold text-lg"
+              )}
+              onClick={handleDelete}
             >
-              <header className='flex flex-col'>
-                <div className='flex justify-between'>
-                  <h1 className='font-semibold text-lg'>Edição de item</h1>
-                  <span className='cursor-pointer' onClick={handleToggle}>
-                    <XIcon />
-                  </span>
-                </div>
-                <div className='w-full h-0.5 bg-black mt-1.5'></div>
-              </header>
-
-              <Form
-                item={item}
-                handleToggle={handleToggle}
-                onRefresh={onRefresh}
-              />
-
-              <button
-                type='button'
-                className={clsx(
-                  "px-4 py-2 bg-red-400 mt-3 rounded-2xl w-full",
-                  "cursor-pointer transition hover:bg-red-500",
-                  "text-white font-bold text-lg"
-                )}
-                onClick={handleDelete}
-              >
-                Deletar
-              </button>
-            </div>
+              Deletar
+            </button>
           </div>
-        </>
+        </div>
       )}
     </>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { Card } from "../Card";
 import type { Item } from "../../interfaces/item";
@@ -7,9 +7,9 @@ import clsx from "clsx";
 export function Cards() {
   const [produtos, setProdutos] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-  const [refresh, setRefresh] = useState(false);
 
-  async function fetchProdutos() {
+  const fetchProdutos = useCallback(async () => {
+    setLoading(true);
     try {
       const response = await axios.get("http://localhost:3000/api/produtos");
       setProdutos(response.data);
@@ -18,15 +18,11 @@ export function Cards() {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
     fetchProdutos();
-  }, [refresh]);
-
-  function handleRefresh() {
-    setRefresh((prev) => !prev);
-  }
+  }, [fetchProdutos]);
 
   if (loading) {
     return <p className='text-center py-10'>Carregando produtos...</p>;
@@ -42,7 +38,7 @@ export function Cards() {
       {produtos.map((i) => (
         <Card
           key={i.id}
-          onRefresh={handleRefresh}
+          onRefresh={fetchProdutos}
           item={{
             id: i.id,
             nome: i.nome,

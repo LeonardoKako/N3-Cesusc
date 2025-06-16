@@ -62,7 +62,7 @@ export function Form({ handleToggle, item, onRefresh }: FormProps) {
     if (!item) {
       // Criar novo produto
       await axios.post("http://localhost:3000/api/produtos", payload);
-      toast.success("Item criado com sucesso!");
+      toast.success("Item criado, de reload na página!");
       handleToggle();
       onRefresh();
     }
