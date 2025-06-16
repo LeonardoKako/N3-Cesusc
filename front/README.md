@@ -1,54 +1,67 @@
-# React + TypeScript + Vite
+# Super Stock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Trabalho para a N3 da faculdade Cesusc - Florianópolis
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Instruções de Configuração
 
-## Expanding the ESLint configuration
+Siga estes passos para colocar o projeto em funcionamento na sua máquina local.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Pré-requisitos
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Certifique-se de ter o seguinte instalado:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+* **Node.js** (necessário para o frontend e o backend)
+* Um **servidor/banco de dados SQL** (ex: MySQL, PostgreSQL, SQLite)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Configuração do Backend
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+1.  Navegue até o diretório `backend`:
+    ```bash
+    cd backend
+    ```
+2.  Instale as dependências necessárias:
+    ```bash
+    npm install
+    ```
+3.  Inicie o servidor backend:
+    ```bash
+    npm run dev
+    ```
+
+### Configuração do Frontend
+
+1.  Navegue até o diretório `front`:
+    ```bash
+    cd front
+    ```
+2.  Instale as dependências necessárias:
+    ```bash
+    npm install
+    ```
+3.  Inicie o servidor de desenvolvimento do frontend:
+    ```bash
+    npm run dev
+    ```
+
+### Configuração do Banco de Dados
+
+1.  Configure o seu servidor/banco de dados SQL de preferência.
+2.  Crie um novo usuário para o banco de dados (se sua configuração exigir).
+3.  Execute os scripts SQL localizados na pasta `sql` para configurar o esquema do seu banco de dados e os dados iniciais. Geralmente, você pode fazer isso usando uma ferramenta de gerenciamento de banco de dados ou a interface de linha de comando.
+
+---
+
+## Como Usar
+
+Assim que tanto o frontend quanto o backend estiverem em execução, você pode acessar a aplicação navegando para `http://localhost:5173` no seu navegador.
+
+---
+
+## Contribuidores
+
+* Leonardo
+* Maria Eduarda
+* Helena
+* Gabriel
